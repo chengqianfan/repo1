@@ -5,4 +5,5 @@ package com.lagou.dao;
  * @create 2021-04-30 9:40
  */
 public interface GitMapper {
+    public void add();
 }
