@@ -55,7 +55,7 @@ public interface UserMapper {
     public List<Resource> findResourceByRoleId(List<Integer> ids);
 
     /*
-        0.c测试从远程仓库pull操作
+        0.测试从远程仓库pull操作
      */
     public List<Resource> findResourceByRoleId2(List<Integer> ids);
 }
