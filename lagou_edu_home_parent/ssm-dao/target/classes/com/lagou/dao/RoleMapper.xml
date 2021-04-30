@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lagou.dao.RoleMapper">
+
+    <!--查询所有角色（条件）-->
+    <select id="findAllRole" parameterType="com.lagou.domain.Role" resultType="com.lagou.domain.Role">
+        select * from roles
+        <where>
+            <if test="name !=null and name != '' ">
+                and name = #{name}
+            </if>
+        </where>
+
+    </select>
+
+    <!--添加角色    public void saveRole(Role role);-->
+    <insert id="saveRole" parameterType="com.lagou.domain.Role">
+        insert into roles(name,code,description,created_time,updated_time,created_by,updated_by)
+        values(#{name},#{code},#{description},#{createdTime},#{updatedTime},#{createdBy},#{updatedBy});
+    </insert>
+
+    <!--回显角色信息  public Role findRoleById(int id);-->
+    <select id="findRoleById" parameterType="int" resultType="com.lagou.domain.Role">
+        select name,code,description from roles where id = #{id}
+    </select>
+
+    <!--修改角色    public void updateRole(Role role);-->
+    <update id="updateRole" parameterType="com.lagou.domain.Role">
+        update roles
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="code != null and code != ''">
+                code = #{code},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime},
+            </if>
+            <if test="createdBy != null and createdBy != '' ">
+                created_by = #{createdBy},
+            </if>
+            <if test="updatedBy != null and updatedBy != '' ">
+                updated_by = #{updatedBy},
+            </if>
+        </set>
+        <where>
+            <if test="id != null and id != '' ">
+                id = #{id}
+            </if>
+        </where>
+    </update>
+
+    <!-- 根据角色ID查询关联的菜单信息ID public List<Integer> findMenuByRoleId(Integer roleid);-->
+    <!--方式一-->
+    <!--    <select id="findMenuByRoleId" resultType="int" parameterType="int">-->
+    <!--            SELECT m.id-->
+    <!--                FROM roles r INNER JOIN role_menu_relation rm ON r.id = rm.role_id-->
+    <!--    	                     INNER JOIN menu m ON m.id = rm.menu_id WHERE r.id =#{id}-->
+    <!--    </select>-->
+    <!--方式二-->
+    <select id="findMenuByRoleId" resultType="int" parameterType="int">
+            SELECT m.`id` FROM menu m LEFT JOIN role_menu_relation rm ON m.`id`=rm.`menu_id`
+                        LEFT JOIN roles r ON rm.`role_id`=r.`id` WHERE r.`id`= #{id}
+    </select>
+
+
+    <!--根据roleid删除在中间表与菜单的关联关系-->
+    <delete id="deleteRoleContextMenu" parameterType="int">
+        delete  from role_menu_relation where role_id = #{rid}
+    </delete>
+
+    <!--为角色分配菜单-->
+    <insert id="roleContextMenu" parameterType="com.lagou.domain.Role_menu_relation">
+        insert into role_menu_relation values(null,#{menuId},#{roleId},#{createdTime},#{updatedTime},#{createdBy},#{updatedby})
+    </insert>
+
+    <!--删除角色     public void deleteRole(Integer roleid);-->
+    <delete id="deleteRole" parameterType="int">
+        delete from roles where id = #{roleid}
+    </delete>
+
+
+</mapper>
