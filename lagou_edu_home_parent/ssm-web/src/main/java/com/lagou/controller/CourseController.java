@@ -147,7 +147,6 @@ public class CourseController {
     /*
         根据ID查询具体的课程信息及关联的讲师信息
      */
-
     @RequestMapping("/findCourseById")
     public ResponseResult findCourseById(Integer id) {
         CourseVO courseVO = courseService.findCourseById(id);
