@@ -25,7 +25,6 @@ public class RoleController {
     /*
         查询所有角色（条件）
      */
-
     @RequestMapping("/findAllRole")
     public ResponseResult findAllRole(@RequestBody Role role) {
 

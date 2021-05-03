@@ -32,7 +32,6 @@ public class PromotionAdController {
         @RequestBody注解把前台post方式发送的请求体中的JSON串封装到对象实体中
         而此处为get查询，不需要此注解
    */
-
     @RequestMapping("/findAllPromotionAdByPage")
     public ResponseResult findAllAdByPage(PromotionAdVO promotionAdVO) {
 
