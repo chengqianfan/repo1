@@ -25,6 +25,8 @@ public class PromotionAdController {
     @Autowired
     private PromotionAdService promotionAdService;
 
+    public static final String LOCAL_URL = "http://localhost:8080";
+
     /*
         广告分页查询
      */
@@ -106,8 +108,8 @@ public class PromotionAdController {
         if (promotionAd.getId() == null) {
             promotionAdService.savePromotionAd(promotionAd);
             return new ResponseResult(true, 200, "添加广告成功", null);
-        }else{
-         //修改
+        } else {
+            //修改
             promotionAdService.updatePromotionAd(promotionAd);
             return new ResponseResult(true, 200, "修改广告成功", null);
         }
@@ -117,11 +119,11 @@ public class PromotionAdController {
     /*
         回显广告信息
      */
-        @RequestMapping("/findPromotionAdById")
-        public ResponseResult findPromotionAdById(int id){
-            PromotionAd promotionAd = promotionAdService.findPromotionAdById(id);
-            return new ResponseResult(true,200,"查询广告信息成功",promotionAd);
-        }
+    @RequestMapping("/findPromotionAdById")
+    public ResponseResult findPromotionAdById(int id) {
+        PromotionAd promotionAd = promotionAdService.findPromotionAdById(id);
+        return new ResponseResult(true, 200, "查询广告信息成功", promotionAd);
+    }
 
     /*
         广告动态上下线
@@ -132,7 +134,7 @@ public class PromotionAdController {
         promotionAdService.updatePromotionAdStatus(id, status);
 
         HashMap<Object, Object> map = new HashMap<>();
-        map.put("status",status);
+        map.put("status", status);
 
         ResponseResult responseResult = new ResponseResult(true, 200, "广告动态上下线成功", map);
 
