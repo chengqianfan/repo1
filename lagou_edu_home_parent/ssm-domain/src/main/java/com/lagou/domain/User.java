@@ -1,7 +1,5 @@
 package com.lagou.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.util.Date;
 
 public class User {

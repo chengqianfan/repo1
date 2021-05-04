@@ -39,17 +39,6 @@ public class UserController {
         return responseResult;
     }
 
-    /*测试create_time和update_time解析问题
-      测试发现，是因为sqlMapConfig中开启了开启自动驼峰命名规则（camel case）映射，
-      所以user中属性应为createTime和updateTime*/
-    @RequestMapping("/findAllUser")
-    public ResponseResult findAllUser(@RequestBody UserVo userVo) {
-        List<User> User = userService.findAllUser(userVo);
-        System.out.println(User);
-        return new ResponseResult(true, 200, "响应成功", User);
-
-    }
-
 
     /*
         修改用户状态

@@ -10,8 +10,7 @@ public interface UserMapper {
         用户分页&多条件组合查询
      */
     public List<User> findAllUserByPage(UserVo userVo);
-    /*测试create_time和update_time解析问题*/
-    public List<User> findAllUser(UserVo userVo);
+
     /*
         修改用户状态
      */
