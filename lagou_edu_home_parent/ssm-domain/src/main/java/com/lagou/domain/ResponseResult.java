@@ -51,4 +51,5 @@ public class ResponseResult {
     public void setContent(Object content) {
         this.content = content;
     }
+
 }

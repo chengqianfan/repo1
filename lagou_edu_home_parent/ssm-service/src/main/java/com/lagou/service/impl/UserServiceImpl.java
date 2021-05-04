@@ -31,7 +31,12 @@ public class UserServiceImpl implements UserService {
         PageInfo<User> pageInfo = new PageInfo<>(allUserByPage);
         return pageInfo;
     }
+    /*测试create_time和update_time解析问题*/
+    public List<User> findAllUser(UserVo userVo){
+        List<User> User = userMapper.findAllUser(userVo);
 
+        return User;
+    }
 
     /*
         修改用户状态
@@ -42,7 +47,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setId(id);
         user.setStatus(status);
-        user.setUpdate_time(new Date());
+        user.setUpdateTime(new Date());
         userMapper.updateUserStatus(user);
     }
 
