@@ -4,16 +4,16 @@
 <mapper namespace="com.lagou.dao.UserMapper">
 
     <!--用户分页&多条件组合查询    public List<User> findAllUserByPage(UserVo userVo);-->
-    <!--            如果实体的属性名与表中字段名不一致，可以使用ResutlMap实现手动封装到实体类中
-                （Mysql数据库里字段名和对象实体名不一致时需要用ResutlMap手动映射）
-                 而这里是前台传递的参数为username，实体user属性与表中字段均为name,所以不需要ResultMap-->
-    <!--is_del等于1的话表示已删除，不能查询已删除的数据-->
     <select id="findAllUserByPage" parameterType="com.lagou.domain.UserVo" resultType="com.lagou.domain.User">
         select * from user
         <where>
+            /*is_del等于1的话表示已删除，不能查询已删除的数据*/
             <if test="true">
                 and is_del !=1
             </if>
+            /*如果实体的属性名与表中字段名不一致，可以使用ResutlMap实现手动封装到实体类中
+            （Mysql数据库里字段名和对象实体名不一致时需要用ResutlMap手动映射）
+            而这里是前台传递的参数为username，实体user属性与表中字段均为name,所以不需要ResultMap*/
             <if test="username !=null and username !=''">
                 and name = #{username}
             </if>
