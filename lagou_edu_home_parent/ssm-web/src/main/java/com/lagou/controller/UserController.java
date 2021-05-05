@@ -46,8 +46,8 @@ public class UserController {
     @RequestMapping("/updateUserStatus")
     public ResponseResult updateUserStatus(int id, String status) {
         userService.updateUserStatus(id, status);
+        System.out.println(status);
         return new ResponseResult(true, 200, "修改用户状态成功", status);
-
     }
 
 
