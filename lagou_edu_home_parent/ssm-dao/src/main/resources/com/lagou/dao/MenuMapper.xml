@@ -32,8 +32,8 @@
     </select>
 
 
-    <!--查询所有菜单信息     public List<Menu> findAllMenu();-->
-    <select id="findAllMenu" resultType="com.lagou.domain.Menu">
+    <!--查询所有菜单信息     public List<Menu> findAllMenu(MenuVo menuVo);-->
+    <select id="findAllMenu" parameterType="com.lagou.domain.MenuVo" resultType="com.lagou.domain.Menu">
         select * from menu
     </select>
 
