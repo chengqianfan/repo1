@@ -40,6 +40,8 @@ public class ResourceServiceImpl implements ResourceService {
         Date date = new Date();
         resource.setCreatedTime(date);
         resource.setUpdatedTime(date);
+        resource.setCreatedBy("system");
+        resource.setUpdatedBy("system");
         resourceMapper.saveResource(resource);
     }
 
