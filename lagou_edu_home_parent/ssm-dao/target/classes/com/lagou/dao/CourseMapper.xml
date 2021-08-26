@@ -16,7 +16,6 @@
             <if test="true">
                 and is_del != 1
             </if>
-
         </where>
     </select>
 
@@ -55,26 +54,24 @@
 
     <!--新增讲师信息-->
     <insert id="saveTeacher" parameterType="com.lagou.domain.Teacher">
-        INSERT INTO teacher(
-        course_id,
-        teacher_name,
-        POSITION,
-        description,
-        create_time,
-        update_time
-    ) VALUES(#{courseId},#{teacherName},#{position},#{description},#{createTime},#{updateTime});
+        INSERT INTO teacher(course_id,
+                            teacher_name,
+                            POSITION,
+                            description,
+                            create_time,
+                            update_time)
+        VALUES (#{courseId}, #{teacherName}, #{position}, #{description}, #{createTime}, #{updateTime});
     </insert>
 
     <!--课程信息回显   public CourseVO findCourseById(Integer id);-->
     <select id="findCourseById" parameterType="int" resultType="com.lagou.domain.CourseVO">
-        SELECT
-         c.*,
-         t.teacher_name    teacher_name,
-         t.position        POSITION,
+        SELECT c.*,
+               t.teacher_name teacher_name,
+               t.position POSITION,
          t.description     description
         FROM course c
-         LEFT JOIN teacher t
-         ON c.id = t.course_id
+            LEFT JOIN teacher t
+        ON c.id = t.course_id
         WHERE c.id = #{id}
     </select>
 
@@ -176,7 +173,10 @@
 
     <!--课程状态管理-->
     <update id="updateCourseStatus" parameterType="com.lagou.domain.Course">
-        update course set status= #{status},update_time = #{updateTime} where id = #{id}
+        update course
+        set status= #{status},
+            update_time = #{updateTime}
+        where id = #{id}
     </update>
 
 
