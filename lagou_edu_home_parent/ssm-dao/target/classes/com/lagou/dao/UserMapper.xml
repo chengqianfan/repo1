@@ -27,31 +27,42 @@
 
     <!--修改用户状态      public void updateUserStatus(User user);-->
     <update id="updateUserStatus" parameterType="com.lagou.domain.User">
-        update user set status = #{status},update_time = #{updateTime} where id = #{id};
+        update user
+        set status      = #{status},
+            update_time = #{updateTime}
+        where id = #{id};
 
     </update>
 
     <!--根据用户名查询用户  public User login(User user);-->
     <select id="login" parameterType="com.lagou.domain.User" resultType="com.lagou.domain.User">
-        select * from user where phone = #{phone}
+        select *
+        from user
+        where phone = #{phone}
     </select>
 
 
     <!--根据userid清空中间表关联关系     public void deleteUserContextRole(Integer userId);-->
     <delete id="deleteUserContextRole" parameterType="int">
-        delete from user_role_relation where user_id = #{userid}
+        delete
+        from user_role_relation
+        where user_id = #{userid}
     </delete>
 
     <!--分配角色 userContextRole-->
     <insert id="userContextRole" parameterType="com.lagou.domain.User_Role_relation">
-       insert into user_role_relation values(null,#{userId},#{roleId},#{createdTime},#{updatedTime},#{createdBy},#{updatedby})
+        insert into user_role_relation
+        values (null, #{userId}, #{roleId}, #{createdTime}, #{updatedTime}, #{createdBy}, #{updatedby})
     </insert>
 
 
     <!--获取用户拥有的权限，分为下面的四步-->
     <!-- 1. 根据用户ID查询关联的角色信息 public List<Role>  findUserRelationRoleById(Integer id);-->
     <select id="findUserRelationRoleById" parameterType="int" resultType="com.lagou.domain.Role">
-        SELECT * FROM roles r INNER JOIN user_role_relation ur ON r.id = ur.role_id WHERE ur.user_id = #{userid}
+        SELECT *
+        FROM roles r
+                 INNER JOIN user_role_relation ur ON r.id = ur.role_id
+        WHERE ur.user_id = #{userid}
     </select>
 
 
@@ -73,7 +84,9 @@
 
     <!--3. 根据PID，查询子菜单信息-->
     <select id="findSubMenuByPid" parameterType="int" resultType="com.lagou.domain.Menu">
-         SELECT * FROM menu WHERE parent_id = #{pid}
+        SELECT *
+        FROM menu
+        WHERE parent_id = #{pid}
     </select>
 
 

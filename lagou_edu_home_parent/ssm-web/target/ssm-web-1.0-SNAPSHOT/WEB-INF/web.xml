@@ -42,9 +42,12 @@
         来同时创建或销毁IOC容器。-->
     <!--servletContext创建的同时加载applicationContext.xml文件创建spring的IOC容器 -->
     <!--context-param为全局初始化参数-->
+
+    <!--tomcat加载顺序：context-param -> listener -> filter -> servlet-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:applicationContext.xml</param-value>

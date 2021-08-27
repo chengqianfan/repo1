@@ -1,5 +1,9 @@
 package com.lagou.domain;
 
+
+import lombok.Data;
+
+@Data
 public class PromotionAdVO {
 
     //当前页
@@ -8,19 +12,4 @@ public class PromotionAdVO {
     //每页显示的条数
     private Integer pageSize;
 
-    public Integer getCurrentPage() {
-        return currentPage;
-    }
-
-    public void setCurrentPage(Integer currentPage) {
-        this.currentPage = currentPage;
-    }
-
-    public Integer getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
-    }
 }
