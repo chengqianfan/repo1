@@ -33,7 +33,8 @@ public class RoleServiceImpl implements RoleService {
         Date date = new Date();
         role.setCreatedTime(date);
         role.setUpdatedTime(date);
-
+        role.setCreatedBy("system");
+        role.setUpdatedBy("system");
         roleMapper.saveRole(role);
     }
 

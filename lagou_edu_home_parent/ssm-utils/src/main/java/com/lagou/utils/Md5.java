@@ -46,7 +46,7 @@ public class Md5 {
 
         // 注册  用户名：tom  密码：123456
         // 添加用户的时候，要将明文密码转换成密文密码
-        String lagou = Md5.md5("123456", "lagou");
+        String lagou = md5("123456", "lagou");
         System.out.println(lagou);
 
 
@@ -55,7 +55,7 @@ public class Md5 {
         //  select * from user where username = tom
 
         // 2.调用 verify 方法进行密码的校验
-        boolean verify = Md5.verify("123456", "lagou", "f00485441dfb815c75a13f3c3389c0b9");
+        boolean verify = verify("123456", "lagou", "f00485441dfb815c75a13f3c3389c0b9");
         System.out.println(verify);
 
     }

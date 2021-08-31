@@ -126,14 +126,14 @@ public class RoleController {
      * 分配资源
      */
     @RequestMapping("/findResourceListByRoleId")
-    public ResponseResult findResourceListByRoleId(Integer roleid) {
-        List<Integer> resourceListByRoleId = roleService.findResourceListByRoleId(roleid);
+    public ResponseResult findResourceListByRoleId(Integer roleId) {
+        List<Integer> resourceListByRoleId = roleService.findResourceListByRoleId(roleId);
         return new ResponseResult(true, 200, "查询资源成功", resourceListByRoleId);
     }
 
     @RequestMapping("roleContextResource")
     public ResponseResult roleContextResource(@RequestBody RoleResourceVo roleResourceVo) {
         roleService.roleContextResource(roleResourceVo);
-        return new ResponseResult(true,200,"分配资源成功",null);
+        return new ResponseResult(true, 200, "分配资源成功", null);
     }
 }

@@ -134,11 +134,8 @@ public class UserServiceImpl implements UserService {
             List<Menu> subMenu = userMapper.findSubMenuByPid(menu.getId());
             menu.setSubMenuList(subMenu);
         }
-
         // 5.获取资源信息
         List<Resource> resourceList = userMapper.findResourceByRoleId(roleIds);
-
-
         // 6. 封装数据并返回
         Map<String, Object> map = new HashMap<>();
         map.put("menuList", parentMenu);
