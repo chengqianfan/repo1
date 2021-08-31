@@ -59,8 +59,8 @@ public class MenuController {
         } else {
 
             //修改操作 回显所有menu信息，先显示id对应的menu,再查询父级menu,因为可能会涉及修改父级菜单操作
-            Menu menu = menuService.findMenuById(id);
             List<Menu> subMenuListByPid = menuService.findSubMenuListByPid(-1);
+            Menu menu = menuService.findMenuById(id);
 
             // 封装数据
             Map<String, Object> map = new HashMap<>();

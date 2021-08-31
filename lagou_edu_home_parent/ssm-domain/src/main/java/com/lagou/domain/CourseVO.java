@@ -58,7 +58,7 @@ public class CourseVO {
     private String courseListImg;
 
     //课程状态，0-草稿，1-上架
-    private int status;
+    private Integer status;
 
     //课程排序
     private int sortNum;

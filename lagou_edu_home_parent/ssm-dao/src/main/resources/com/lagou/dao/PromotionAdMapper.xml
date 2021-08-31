@@ -87,7 +87,7 @@
             <if test="updateTime != null">
                 updateTime = #{updateTime},
             </if>
-            <if test="status != null and status != ''">
+            <if test="status != null">
                 status = #{status},
             </if>
             <if test="priority != null and priority != ''">

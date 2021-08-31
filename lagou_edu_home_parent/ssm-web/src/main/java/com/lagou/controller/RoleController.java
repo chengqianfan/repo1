@@ -1,9 +1,6 @@
 package com.lagou.controller;
 
-import com.lagou.domain.Menu;
-import com.lagou.domain.ResponseResult;
-import com.lagou.domain.Role;
-import com.lagou.domain.RoleMenuVo;
+import com.lagou.domain.*;
 import com.lagou.service.MenuService;
 import com.lagou.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,22 +38,23 @@ public class RoleController {
      */
     @RequestMapping("/saveOrUpdateRole")
     public ResponseResult saveOrUpdateRole(@RequestBody Role role) {
-        if (role.getId() == null){
+        if (role.getId() == null) {
             roleService.saveRole(role);
-            return new ResponseResult(true,200,"添加角色成功",null);
-        }else{
+            return new ResponseResult(true, 200, "添加角色成功", null);
+        } else {
             roleService.updateRole(role);
-            return new ResponseResult(true,200,"修改角色成功",null);
+            return new ResponseResult(true, 200, "修改角色成功", null);
 
         }
     }
+
     /*
         根据id回显角色信息
     */
     @RequestMapping("/findRoleById")
-    public ResponseResult findRoleById(int id){
+    public ResponseResult findRoleById(int id) {
         Role role = roleService.findRoleById(id);
-        return new ResponseResult(true,200,"回显角色信息成功",role);
+        return new ResponseResult(true, 200, "回显角色信息成功", role);
 
     }
 
@@ -124,4 +122,18 @@ public class RoleController {
     }
 
 
+    /**
+     * 分配资源
+     */
+    @RequestMapping("/findResourceListByRoleId")
+    public ResponseResult findResourceListByRoleId(Integer roleid) {
+        List<Integer> resourceListByRoleId = roleService.findResourceListByRoleId(roleid);
+        return new ResponseResult(true, 200, "查询资源成功", resourceListByRoleId);
+    }
+
+    @RequestMapping("roleContextResource")
+    public ResponseResult roleContextResource(@RequestBody RoleResourceVo roleResourceVo) {
+        roleService.roleContextResource(roleResourceVo);
+        return new ResponseResult(true,200,"分配资源成功",null);
+    }
 }

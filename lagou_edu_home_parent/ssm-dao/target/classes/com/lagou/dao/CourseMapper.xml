@@ -10,7 +10,7 @@
             <if test="courseName !=null and courseName != ''">
                 and course_name like concat('%',#{courseName},'%')
             </if>
-            <if test="status !=null and status != ''">
+            <if test="status != null">
                 and status = #{status}
             </if>
             <if test="true">
@@ -68,7 +68,7 @@
         SELECT c.*,
                t.teacher_name teacher_name,
                t.position POSITION,
-         t.description     description
+               t.description description
         FROM course c
             LEFT JOIN teacher t
         ON c.id = t.course_id
