@@ -67,10 +67,12 @@ public interface UserMapper {
     public void test666();
     public void test777();
     public void test888();
+    public void test55();
+    public void test66();
+    public void test77();
+    public void test88();
     public void test90();
     public void test100();
-    public void test111();
-
-
+    public int test():
 
 }
